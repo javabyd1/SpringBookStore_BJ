@@ -10,7 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,12 +24,17 @@ public class Book {
     @Column(name = "author")
     private String author;
     @Column(name = "title")
+    @NotNull
+    @Size(min = 2, max = 30)
     private String title;
 
+    @NotNull
     @ManyToOne
     private Author bookAuthor;
+    @NotNull
     @ManyToOne
     private Category bookCategory;
+    @NotNull
     @ManyToOne
     private Publisher publisher;
 
