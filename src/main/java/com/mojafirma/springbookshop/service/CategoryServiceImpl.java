@@ -1,5 +1,6 @@
 package com.mojafirma.springbookshop.service;
 
+import com.mojafirma.springbookshop.exception.CategoryNotFoundException;
 import com.mojafirma.springbookshop.interfaces.AuthorService;
 import com.mojafirma.springbookshop.interfaces.CategoryService;
 import com.mojafirma.springbookshop.model.Author;
@@ -30,5 +31,13 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category getCategory(Long id) {
         return categoryRepository.findOne(id);
+    }
+
+    @Override
+    public Category findById(Long id) {
+        Category category = categoryRepository.findById(id).orElseThrow(
+                () -> new CategoryNotFoundException(id)
+        );
+        return category;
     }
 }

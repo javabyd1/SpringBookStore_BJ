@@ -1,0 +1,68 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <form>
+        Tytul:
+        <input id="title" type="text">
+        <input type="button" id="dodaj" value="Dodaj">
+    </form>
+
+    <ul></ul>
+
+    <script>
+
+        $(document).ready(function () {
+
+            console.log("Działaa");
+
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8090/app/books',
+                success: function (result) {
+                    console.log(result);
+                    $.each(result, function (key, value) {
+                        console.log(key);
+
+                        if (value.bookCategory.id != null) {
+                            console.log(value.bookCategory.name)
+                        }
+                        console.log(value['title']);
+                        $("ul").append("<li>" + key + ") " + value['title'] + " " + value['bookCategory']['name'] + " Autor: " +
+                            value['bookAuthor']['name'] + " " + value['bookAuthor']['lastname'] + "</li>");
+                    })
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+
+            $("#dodaj").click(function () {
+                var title = $("#title").val();
+                console.log(title);
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8090/app/books',
+                    data: JSON.stringify({
+                        "title": $("#title").val()
+                    }),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (response) {
+                        console.log("Sukces: " + response);
+                    },
+                    error: function (xhr) {
+                        console.log("Error :(" + xhr.responseText);
+                    }
+                })
+            });
+
+        });
+    </script>
+</body>
+
+</html>

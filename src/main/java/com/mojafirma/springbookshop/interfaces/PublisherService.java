@@ -10,4 +10,5 @@ public interface PublisherService {
     List<Publisher> getAllPublishers();
     void savePublisher(Publisher publisher);
     Publisher getPublisher(Long id);
+    Publisher findById(Long id);
 }

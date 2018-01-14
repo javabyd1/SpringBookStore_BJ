@@ -1,8 +1,10 @@
 package com.mojafirma.springbookshop.service;
 
+import com.mojafirma.springbookshop.exception.CategoryNotFoundException;
 import com.mojafirma.springbookshop.interfaces.AuthorService;
 import com.mojafirma.springbookshop.interfaces.PublisherService;
 import com.mojafirma.springbookshop.model.Author;
+import com.mojafirma.springbookshop.model.Category;
 import com.mojafirma.springbookshop.model.Publisher;
 import com.mojafirma.springbookshop.repository.AuthorRepository;
 import com.mojafirma.springbookshop.repository.PublisherRepository;
@@ -30,5 +32,13 @@ public class PublisherServiceImpl implements PublisherService {
     @Override
     public Publisher getPublisher(Long id) {
         return publisherRepository.findOne(id);
+    }
+
+    @Override
+    public Publisher findById(Long id) {
+        Publisher publisher = publisherRepository.findById(id).orElseThrow(
+                () -> new CategoryNotFoundException(id)
+        );
+        return publisher;
     }
 }
