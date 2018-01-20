@@ -1,9 +1,5 @@
 package com.mojafirma.springbookshop;
 
-import com.mojafirma.springbookshop.model.Author;
-import com.mojafirma.springbookshop.model.Book;
-import com.mojafirma.springbookshop.model.Category;
-import com.mojafirma.springbookshop.model.Publisher;
 import com.mojafirma.springbookshop.repository.AuthorRepository;
 import com.mojafirma.springbookshop.service.AuthorServiceImpl;
 import com.mojafirma.springbookshop.service.BookServiceImpl;
@@ -15,7 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBookShopApplication implements CommandLineRunner{
+public class Application implements CommandLineRunner{
 
 	@Autowired
 	private BookServiceImpl bookService;
@@ -29,7 +25,7 @@ public class SpringBookShopApplication implements CommandLineRunner{
 	private PublisherServiceImpl publisherService;
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBookShopApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 	@Override
