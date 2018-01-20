@@ -3,6 +3,7 @@ package com.mojafirma.springbookshop.model;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,13 +29,10 @@ public class Book {
     @Size(min = 2, max = 30)
     private String title;
 
-    @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Author bookAuthor;
-    @NotNull
     @ManyToOne
     private Category bookCategory;
-    @NotNull
     @ManyToOne
     private Publisher publisher;
 
