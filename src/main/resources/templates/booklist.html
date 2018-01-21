@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-
+<h2 th:text="${message}"></h2>
     <h1>Lista książek</h1>
 
     <table>
@@ -47,7 +47,7 @@
                     th:text="${cat.getName()}">
             </option>
         </select>
-        
+
         <label>Wybierz istniejącego autora</label>
         <select th:field="*{bookAuthor.id}">
             <option th:each="aut : ${authors}"
